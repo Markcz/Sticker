@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@drawable/tv_border"
+        android:text="Hello."
+        android:textSize="18sp" />
+
+    <ImageView
+        android:id="@+id/iv_delete"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_gravity="top|left"
+        android:src="@drawable/icon_close_red" />
+
+    <ImageView
+        android:id="@+id/iv_flip"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_gravity="top|right"
+        android:src="@drawable/icon_rotate" />
+
+    <ImageView
+        android:id="@+id/iv_zoom"
+        android:layout_gravity="bottom|right"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/icon_zoom" />
+
+</FrameLayout>
