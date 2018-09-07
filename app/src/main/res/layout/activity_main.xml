@@ -1,29 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/fl_root"
     tools:context="com.example.chenzhen.sticker.MainActivity">
 
-
-
-
-
-    <Button
-        android:text="添加"
-        android:onClick="addSticker"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="60dp"
-        android:layout_width="match_parent"
-        android:layout_height="50dp" />
-
-    <Button
-        android:text="移除"
-        android:onClick="removeSticker"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_gravity="bottom"
         android:layout_width="match_parent"
-        android:layout_height="50dp" />
+        android:layout_height="wrap_content">
+        <Button
+            android:text="添加"
+            android:onClick="addSticker"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+
+        <Button
+            android:text="移除"
+            android:onClick="removeSticker"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+
+
+        <Button
+            android:text="保存所有贴纸"
+            android:onClick="saveStickers"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            tools:ignore="OnClick" />
+    </LinearLayout>
 
 </FrameLayout>

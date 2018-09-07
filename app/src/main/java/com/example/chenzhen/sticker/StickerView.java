@@ -69,10 +69,12 @@ public class StickerView extends View implements ViewTreeObserver.OnGlobalLayout
     static final int padding = 80;
 
 
-    private boolean mDrawController = true;
+    private boolean isEditing = false;
+
 
     private OnStickerListener mOnStickerListener;
     private Paint mPaint;
+
 
 
 
@@ -84,9 +86,9 @@ public class StickerView extends View implements ViewTreeObserver.OnGlobalLayout
 
         @Override
         public boolean onSingleTapUp(MotionEvent e) {
-            mDrawController = !mDrawController;
-            setDrawController(mDrawController);
-            if (mDrawController){
+            isEditing = !isEditing;
+            setEditing(isEditing);
+            if (isEditing){
                 setFocusable(true);
             }
             if (mOnStickerListener != null){
@@ -142,6 +144,13 @@ public class StickerView extends View implements ViewTreeObserver.OnGlobalLayout
 
     }
 
+
+    public Bitmap getSticker(){
+        return mBitmap;
+    }
+
+
+
     public void addSticker(@NonNull Bitmap bitmap) {
         if (bitmap == null){
             throw new NullPointerException("传入的bitmap为null");
@@ -166,8 +175,6 @@ public class StickerView extends View implements ViewTreeObserver.OnGlobalLayout
             mContentRect = new RectF();
 
             mMatrix = new Matrix();
-
-
             mMatrix.postTranslate(width / 2, height / 2);
 
         } catch (Exception e) {
@@ -183,8 +190,8 @@ public class StickerView extends View implements ViewTreeObserver.OnGlobalLayout
         postInvalidate();
     }
 
-    public void setDrawController(boolean drawController) {
-        mDrawController = drawController;
+    public void setEditing(boolean drawController) {
+        isEditing = drawController;
         postInvalidate();
     }
 
@@ -202,7 +209,8 @@ public class StickerView extends View implements ViewTreeObserver.OnGlobalLayout
 
         canvas.drawBitmap(mBitmap, mMatrix, mPaint);
 
-        if (mDrawController && isFocusable()) {
+        if (isEditing) {
+
             canvas.drawLine(mPoints[0], mPoints[1], mPoints[2], mPoints[3], mBorderPaint);
             canvas.drawLine(mPoints[2], mPoints[3], mPoints[4], mPoints[5], mBorderPaint);
             canvas.drawLine(mPoints[4], mPoints[5], mPoints[6], mPoints[7], mBorderPaint);
@@ -234,7 +242,7 @@ public class StickerView extends View implements ViewTreeObserver.OnGlobalLayout
         if (event.getPointerCount() > 1){
             return true;
         }
-        boolean result = detector.onTouchEvent(event);
+        boolean result = false;
         int action = event.getAction();
         int x = (int) event.getX();
         int y = (int) event.getY();
